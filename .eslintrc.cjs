@@ -15,7 +15,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'default-param-last': 'off',
-    'import/no-extraneous-dependencies': [ 'error', { devDependencies: true } ],
     'max-len': [ 'error', { code: 80, ignoreStrings: true } ],
     'arrow-body-style': ['error', 'always'],
   },
