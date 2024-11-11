@@ -2,14 +2,16 @@
 
 Find that one book worth your time.
 
-This application uses React and TypeScript. It also uses the openlibrary search
-api to fetch book data.
+## Dependencies
+
+- React
+- TypeScript
+- openlibrary api for data
 
 ## Features
 
 - Find a book by it's title
-- Find all the books written by an author
-
+- Find books by an author
 
 ## How to start the application
 
