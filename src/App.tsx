@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+
+import SearchForm from './components/SearchForm';
+import Display from './components/Display';
 
 interface Book {
   title: string;
@@ -41,9 +44,9 @@ function App() {
           })
           .catch((error: unknown) => {
             if (error instanceof Error) {
-              console.error("Error fetching data:", error.message);
+              console.error('Error fetching data:', error.message);
             } else {
-              console.error("Unexpected error:", error);
+              console.error('Unexpected error:', error);
             }
           });
         } else {
@@ -68,9 +71,9 @@ function App() {
               })
               .catch((error: unknown) => {
                 if (error instanceof Error) {
-                  console.error("Error fetching data:", error.message);
+                  console.error('Error fetching data:', error.message);
                 } else {
-                  console.error("Unexpected error:", error);
+                  console.error('Unexpected error:', error);
                 }
               });
           }
@@ -78,58 +81,10 @@ function App() {
     }
   }, [input, searchBy]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const newInput = formData.get('book-name') as string;
-    const newSearchBy = formData.get('search-by') as string;
-
-    setInput(newInput);
-    setSearchBy(newSearchBy);
-  };
-
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          id="book-name"
-          type="text"
-          name="book-name"
-        />
-        <input id="title-radio" type="radio" name="search-by" value="title" />
-        <label htmlFor="title-radio">Search Book by Book Title</label>
-        <input id="author-radio" type="radio" name="search-by" value="author" />
-        <label htmlFor="author-radio">Search Books by Author</label>
-        <button>Submit</button>
-      </form>
-
-      {
-        book ? (
-          <div>
-            <img src={book.coverUrl} alt={`${book.title}'s cover`} height="300" width="200" />
-            <div>{book.title}</div>
-            <div>{book.author}</div>
-          </div>
-        ) : books &&
-        (
-          <div>
-          <ul>
-          {
-            books.map((book, idx) => {
-              return (
-                <li key={idx}>
-                  <img src={book.coverUrl} alt={`${book.title}'s cover`} height="300" width="200" />
-                  <div>{book.title}</div>
-                  <div>{book.author}</div>
-                </li>
-              )
-            })
-          }
-          </ul>
-          </div>
-        )
-      }
+      <SearchForm setInput={setInput} setSearchBy={setSearchBy} />
+      <Display book={book} books={books} />
     </div>
   );
 }
